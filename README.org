@@ -95,6 +95,16 @@ docker build -t theiceshelf/firn .
 #+end_src
 
 ** Developing
+
+
+- Clone the repo
+- Run bin/compile to download dependencies
+  - You can halt the process before GRAALVM kicks off it's compilation
+  - You only really need the rust libs / compilation process to happen.
+- I use Emacs and so I open `core.clj` and boot up a Cider REPL.
+  + Then, I will usually test changes by iteratively running the commands within the comment block at the bottom of core, which simulates running the binary.
+
+
 - From the directory you run your repl, set an environment variable of: =DEV=TRUE=
 - If you use Emacs, you can set the environment variable to =M-x setenv=
 - There is a directory for testing Firn on a set of dummy org files, located at

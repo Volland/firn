@@ -19,7 +19,7 @@
     (let [home (System/getProperty "user.home")
           lib-dir (io/file home ".firn")]
       (.mkdirs lib-dir)
-      (doseq [lib-name ["libmylib.dylib" "libmylib.so"]]
+      (doseq [lib-name ["libfirn_parser.dylib" "libfirn_parser.so"]]
         (when-let [resource (io/resource lib-name)]
           (let [lib-file (io/file lib-dir lib-name)]
             (io/copy (io/input-stream resource) lib-file))))
@@ -95,7 +95,7 @@
       (exit (if ok? 0 1) exit-message)
       (do
         (init!)
-        (clojure.lang.RT/loadLibrary "mylib")
+        (clojure.lang.RT/loadLibrary "libfirn_parser")
         (case action
           "serve"  (server/serve    options)
           "build"  (build/all-files options)
@@ -104,5 +104,6 @@
 ;; Repl Land -
 
 (comment
-  (mount/stop) (-main "serve" "-d" "/Users/tees/Projects/firn/firn/docs")
+  (mount/stop) (-main "serve" "-d" "/Users/tylersloane/Projects/firn/firn/docs")
+  (mount/stop) (-main "build" "-d" "/Users/tylersloane/Desktop/foo.org")
   )
